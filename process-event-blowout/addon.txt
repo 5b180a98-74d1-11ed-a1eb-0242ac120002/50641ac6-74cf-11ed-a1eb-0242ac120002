@@ -1,0 +1,6 @@
+"AddonInfo"
+{
+	"name" "EVENT - PROCESS SCP"
+	"author_name" "Bk"
+	"info" " { 	"description": "Description", 	"type": "effects", 	"tags":  	[ 		"roleplay", 		"scenic" 	] }"
+}

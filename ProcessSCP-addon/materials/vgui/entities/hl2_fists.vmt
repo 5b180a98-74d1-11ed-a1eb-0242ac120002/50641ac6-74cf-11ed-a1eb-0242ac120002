@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "vgui/entities/hl2_fists"
+	"$nolod" 1
+	"$translucent" 1
+}

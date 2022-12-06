@@ -1,0 +1,1006 @@
+AddCSLuaFile()
+
+function SWEP:doSuppressorStats()
+    self.Primary.Sound = Sound("weap_romeo700_sup_plr")
+    self.Reverb = {
+        RoomScale = 50000,
+        Sounds = {
+            Outside = {
+                Layer = Sound("Atmo_DMR_Sup.Outside"),
+                Reflection = Sound("Reflection_Sniper.Outside")
+            },
+    
+            Inside = { 
+                Layer = Sound("Atmo_DMR_Sup.Inside"),
+                Reflection = Sound("Reflection_Sniper.Inside")
+            }
+        }
+    }
+    self.ParticleEffects.MuzzleFlash = "AC_muzzle_pistol_suppressed"
+end
+
+SWEP.Customization = {
+    {"attachment_vm_sn_romeo700_stock"},
+
+    {"attachment_vm_sn_romeo700_mag"},
+   
+    {"attachment_vm_sn_romeo700_barrel"},
+
+    {"attachment_vm_sn_romeo700_bolt"},
+
+    {"att_muzzle",},
+
+    {"attachment_vm_sn_romeo700_irons",
+    "att_vm_thermal_east01", "att_vm_thermal_west01", "att_vm_4x_west02",
+    "att_vm_scope_mike14", "attachment_vm_sn_romeo700_scope"},
+
+    {"att_laser", "attachment_vm_sn_romeo700_laser01"},
+
+    {"att_grip", "attachment_vm_sn_romeo700_angledgrip01", "attachment_vm_sn_romeo700_angledgrip02", "attachment_vm_sn_romeo700_stubbygrip01", 
+    "attachment_vm_sn_romeo700_stubbygrip02"},
+}
+
+--NECESSARY: it loads custom attachments from other authors
+require("mw_utils")
+mw_utils.LoadInjectors(SWEP)   
+
+-- SWEP.Customization = {
+--     ["Perk"] = {
+--         Slot = 1,
+--         {
+--             Key = "no_perk",
+--         },
+--         {
+--             Key = "perk_soh",
+--             Stats = function(self)
+--                 weapon.Animations.Reload = weapon.Animations.Reload_Fast
+--                 weapon.Animations.Reload_Empty = weapon.Animations.Reload_Empty_Fast
+--                 weapon.Animations.Reload_Xmag = weapon.Animations.Reload_Xmag_Fast
+--                 weapon.Animations.Reload_Empty_Xmag = weapon.Animations.Reload_Empty_Xmag_Fast
+--                 weapon.Animations.Reload_Smag = weapon.Animations.Reload_Smag_Fast
+--                 weapon.Animations.Reload_Empty_Smag = weapon.Animations.Reload_Empty_Smag_Fast
+--             end
+--         },
+--         {
+--             Key = "perk_fastmelee",
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "perk_heavymelee",
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "perk_fmj",
+--             Stats = function(self)
+--             end
+--         }
+--     },
+
+--     ["Barrel"] = {
+--         Slot = 2,
+--         {
+--             Key = "attachment_vm_sn_romeo700_barrel",
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_barlong",
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_barhvy",
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_barshort",
+--             Stats = function(self)
+--             end
+--         },
+--     },
+
+--     ["Muzzle"] = {
+--         Slot = 3,
+--         {
+--             Key = "no_muzzle"
+--         },
+--         {
+--             Key = "attachment_vm_flashhider01",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ParticleEffects.MuzzleFlash = "AC_muzzle_pistol_suppressed"
+--             end 
+--         },               
+--         {
+--             Key = "attachment_vm_flashhider02",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ParticleEffects.MuzzleFlash = "AC_muzzle_pistol_suppressed"
+--             end 
+--         },                         
+--         {
+--             Key = "attachment_vm_flashhider05",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ParticleEffects.MuzzleFlash = "AC_muzzle_pistol_suppressed"
+--             end 
+--         },                          
+--         {
+--             Key = "attachment_vm_muzzlebrake01",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },         
+--         {
+--             Key = "attachment_vm_muzzlebrake02",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },         
+--         {
+--             Key = "attachment_vm_muzzlebrake03",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },         
+--         {
+--             Key = "attachment_vm_muzzlebrake04",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },         
+--         {
+--             Key = "attachment_vm_compensator01",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },   
+--         {
+--             Key = "attachment_vm_compensator02",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },          
+--         {
+--             Key = "attachment_vm_muzzlemelee01",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },   
+--         {
+--             Key = "attachment_vm_muzzlemelee02",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end 
+--         },      
+--         {
+--             Key = "attachment_vm_silencer_east01",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 doSuppressorStats(self)
+--             end 
+--         },        
+--         {
+--             Key = "attachment_vm_silencer02",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 doSuppressorStats(self)
+--             end 
+--         },
+--         {
+--             Key = "attachment_vm_silencer03",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 doSuppressorStats(self)
+--             end 
+--         },
+--         {
+--             Key = "attachment_vm_silencer04",
+--             AttachmentBodygroups = {
+--                 ["tag_tip"] = 1
+--             },
+--             VElement = {
+--                 Bone = "tag_silencer",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.3, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.35, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 doSuppressorStats(self)
+--             end 
+--         },
+--     },
+
+--     ["Optic"] = {
+--         Slot = 4,
+--         {
+--             Key = "no_sight",
+--         },
+--         {
+--             Key = "attachment_vm_minireddot_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.25)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0, 0.03, 0) --i know you tell me not to fuck with this but the dot being actually centered on the glass demands it xoxo
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_minireddot02_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.2)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--             end
+--         },      
+--         {
+--             Key = "attachment_vm_minireddot03_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.2)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--             end
+--         },  
+--         {
+--             Key = "attachment_vm_holo_west02",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.35)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--             end
+--         },  
+--         {
+--             Key = "attachment_vm_holo_east",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.02, 5, -1.275)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_reflex_east02_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.55)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--             end
+--         },  
+--         {
+--             Key = "attachment_vm_reflex_west03",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.5)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--             end
+--         },  
+--         {
+--             Key = "attachment_vm_reflex_west04",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.015, 3, -1.4)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--             end
+--         },  
+--         {
+--             Key = "attachment_vm_holo_west_lod0",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.5)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(-0.05,0.05,0)
+--             end
+--         },  
+--         {
+--             Key = "attachment_vm_reflex_east",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 3, -1.35)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(-0.15,0,0)
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_4x_east_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0.11, 4, -1.61)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         },        
+--         {
+--             Key = "attachment_vm_4x_west_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0, 4, -1.71)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0.03,0)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         },        
+--         {
+--             Key = "attachment_vm_4x_west02_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.01, 4, -1.61)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_thermal_east_tall",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_reflex",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [2] = {Vector(0, 0, 0), Angle()},
+--                         [3] = {Vector(0, 0, 0), Angle()},
+--                         [4] = {Vector(0, 0, 0), Angle()}
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.0015, 4, -1.55)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_thermal_hybrid",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_reflex",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [2] = {Vector(0, 0, 0), Angle()},
+--                         [3] = {Vector(0, 0, 0), Angle()},
+--                         [4] = {Vector(0, 0, 0), Angle()}
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0, 4, -1.12)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.HybridAimAngles = Angle(0, 0, -45)
+--                 self.HybridAimPos = Vector(-1.75, 10.5, -0.6)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_thermal_west_01",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_reflex",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [2] = {Vector(0, 0, 0), Angle()},
+--                         [3] = {Vector(0, 0, 0), Angle()},
+--                         [4] = {Vector(0, 0, 0), Angle()}
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.005, 4, -1.1)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_sn_romeo700_scope",
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.01,0,-0.75)
+--                 self.Zoom.Blur.EyeFocusDistance = 3.5
+--             end
+--         }, 
+--         {
+--             Key = "weapon_vm_scope_romeo700_alt",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.01,6,-1.5)
+--                 self.Zoom.Blur.EyeFocusDistance = 3.5
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_scope_vz",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.0035,6,-1.43)
+--                 self.Zoom.Blur.EyeFocusDistance = 3.5
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_hybrid_west",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_reflex",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [2] = {Vector(0, 0, 0), Angle()},
+--                         [3] = {Vector(0, 0, 0), Angle()},
+--                         [4] = {Vector(0, 0, 0), Angle()}
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(0.005, 4, -1.255)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.HybridAimAngles = Angle(-0.01, 0.02, 0)
+--                 self.HybridAimPos = Vector(0,13,-2.45)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.8
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_hybrid_west02",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.025, 4, -1.52)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.HybridAimAngles = Angle(-0, 0.025, 0)
+--                 self.HybridAimPos = Vector(-0.015, 15, -1.5)
+--                 self.Zoom.Blur.EyeFocusDistance = 3.5
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.85
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_hybrid_west02_thermal",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.025, 4, -1.52)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.HybridAimAngles = Angle(-0, 0.025, 0)
+--                 self.HybridAimPos = Vector(-0.015, 15, -1.5)
+--                 self.Zoom.Blur.EyeFocusDistance = 3.5
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.85
+--             end
+--         }, 
+--         {
+--             Key = "attachment_vm_hybrid_west03",
+--             Bodygroups = {
+--                 ["tag_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_reflex",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [2] = {Vector(0, 0, 0), Angle()},
+--                         [3] = {Vector(0, 0, 0), Angle()},
+--                         [4] = {Vector(0, 0, 0), Angle()}
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self.ViewModelOffsets.Aim.Pos = self.ViewModelOffsets.Aim.Pos + Vector(-0.005, 4, -1.185)
+--                 self.ViewModelOffsets.Aim.Angles = self.ViewModelOffsets.Aim.Angles + Angle(0,0,0)
+--                 self.Zoom.Blur.EyeFocusDistance = 1.5
+--                 self.HybridAimAngles = Angle(0, 0, -45)
+--                 self.HybridAimPos = Vector(-1.55, 10, -0.35)
+--                 self.Zoom.FovMultiplier = 0.8
+--                 self.Zoom.ViewModelFovMultiplier = 0.85
+--             end
+--         }, 
+--     },
+    
+--     ["Laser"] = {
+--         Slot = 5,
+--         {
+--             Key = "no_laser"
+--         },
+--         {
+--             Key = "attachment_vm_laser_cylinder01",
+--             AttachmentBodygroups = {
+--                 ["tag_laser"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_laser_attach",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.5, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.5, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_laser_cylinder02",
+--             AttachmentBodygroups = {
+--                 ["tag_laser"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_laser_attach",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.5, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.5, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end
+--         },       
+--         {
+--             Key = "attachment_vm_laser_cylinder03",
+--             AttachmentBodygroups = {
+--                 ["tag_laser"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_laser_attach",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                         [1] = {Vector(0, 0, 0), Angle()},
+--                         [2] = {Vector(0, 2.5, 0), Angle()},
+--                         [3] = {Vector(0, 0.35, 0), Angle()},
+--                         [4] = {Vector(0, -3.5, 0), Angle()},
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--             end
+--         }
+--     },
+
+--     ["Stock"] = {
+--         Slot = 6,
+--         {
+--             Key = "attachment_vm_sn_romeo700_stock",
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_stockhvy",
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_stockhvy2",
+--             Stats = function(self)
+--                 self:SetGripPoseParameter2("grip_stockhvy_offset")
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_stockno",
+--             Stats = function(self)
+--                 self:SetGripPoseParameter2("grip_stockhvy_offset")
+--             end
+--         },
+--     },
+
+--     ["Magazine"] = {
+--         Slot = 7,
+--         {
+--             Key = "attachment_vm_sn_romeo700_mag"
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_smag",
+--             Stats = function(self)
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_sn_romeo700_xmag",
+--             Stats = function(self)
+--             end
+--         }
+--     },
+
+--     ["Underbarrel"] = {
+--         Slot = 8,
+--         {
+--             Key = "no_underbarrel",
+--         },
+--         {
+--             Key = "attachment_vm_angledgrip_lod0",
+--             AttachmentBodygroups = {
+--                 ["ub_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_grip_attach",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self:SetGripPoseParameter("grip_ang_offset")
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_angledgrip04",
+--             AttachmentBodygroups = {
+--                 ["ub_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_grip_attach",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self:SetGripPoseParameter("grip_ang_offset")
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_vertgrip02_lod0",
+--             AttachmentBodygroups = {
+--                 ["ub_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_folding_grip",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self:SetGripPoseParameter("grip_vertpro_offset")
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_vertgrip03",
+--             AttachmentBodygroups = {
+--                 ["ub_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_folding_grip",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self:SetGripPoseParameter("grip_vertpro_offset")
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_vertgrip_stubby02",
+--             AttachmentBodygroups = {
+--                 ["ub_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_folding_grip",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self:SetGripPoseParameter("grip_vertpro_offset")
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_vertgrip_stubby01",
+--             AttachmentBodygroups = {
+--                 ["ub_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_folding_grip",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self:SetGripPoseParameter("grip_vert_offset")
+--             end
+--         },
+--         {
+--             Key = "attachment_vm_vertgrip_stubby04",
+--             AttachmentBodygroups = {
+--                 ["ub_rail"] = 1,
+--             },
+--             VElement = {
+--                 Bone = "tag_folding_grip",
+--                 Position = Vector(0, 0, 0),
+--                 Angles = Angle(),
+--                 Offsets = { 
+--                     ["Barrel"] = {
+--                     }
+--                 }
+--             },
+--             Stats = function(self)
+--                 self:SetGripPoseParameter("grip_vert_offset")
+--             end
+--         },
+--     }
+-- }

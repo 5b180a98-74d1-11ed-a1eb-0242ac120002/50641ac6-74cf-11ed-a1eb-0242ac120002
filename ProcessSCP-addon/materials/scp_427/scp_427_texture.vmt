@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "scp_427/scp_427_texture"
+	"$surfaceprop" "metal"
+}
